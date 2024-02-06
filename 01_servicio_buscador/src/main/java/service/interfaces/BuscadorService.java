@@ -8,5 +8,5 @@ public interface BuscadorService {
 	List<Resultado> buscar(String tematica);
 	void agregar(Resultado resultado);
 	List<Resultado> eliminarResultado(String url);
-	Resultado actualizarDescripción(String url, String nuevaDescripcion);
+	Resultado actualizarDescripcion(String url, String nuevaDescripcion);
 }

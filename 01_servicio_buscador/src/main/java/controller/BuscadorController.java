@@ -35,10 +35,11 @@ public class BuscadorController {
 		return buscadorService.eliminarResultado(url);
 	}
 	
+	
 	@PutMapping(value="actualizar",produces="application/json",consumes="application/json")
 	//produces el tipo de datos que envías, consumes el tipo de dato que recibes
 	public Resultado actualizar(@RequestBody Resultado resultado) {
-		return buscadorService.actualizarDescripción(resultado.getUrl(), resultado.getDescripcion());
+		return buscadorService.actualizarDescripcion(resultado.getUrl(), resultado.getDescripcion());
 		//getDescripcion() devuelve el valor del parámetro nuevaDescripcion que está
 		//en el método actualizarDescripción del BuscadorServiceImpl
 	}

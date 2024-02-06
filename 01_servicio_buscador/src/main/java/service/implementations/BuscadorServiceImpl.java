@@ -39,7 +39,7 @@ public class BuscadorServiceImpl implements BuscadorService {
 	}
 
 	@Override
-	public Resultado actualizarDescripción(String url, String nuevaDescripcion) {
+	public Resultado actualizarDescripcion(String url, String nuevaDescripcion) {
 		Resultado resultado=resultados.stream()
 		.filter(r->r.getUrl().equals(url))
 		.findFirst()
