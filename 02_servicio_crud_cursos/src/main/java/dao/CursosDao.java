@@ -22,7 +22,7 @@ public interface CursosDao extends JpaRepository<Curso,Integer> {
 	
 	@Transactional
 	@Modifying
-	@Query("update Curso c set c.precio=c.precio*100+?1/100 where c.nombre=?2")
+	@Query("update Curso c set c.precio=c.precio*(100+?1)/100 where c.denominacion=?2")
 	void updatePrecio(int porcentaje, String denominacion);
 	
 	//heredados

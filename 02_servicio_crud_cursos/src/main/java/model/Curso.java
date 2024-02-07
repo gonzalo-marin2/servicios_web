@@ -1,5 +1,6 @@
 package model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Curso {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idCurso;
-	private String nombre;
+	private String denominacion;
 	private int duracion;
 	private double precio;
 	
