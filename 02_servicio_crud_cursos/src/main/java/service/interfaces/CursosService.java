@@ -5,10 +5,10 @@ import java.util.List;
 import model.Curso;
 
 public interface CursosService {
-	List<Curso> mostrarCursos();
+	List<Curso> cursos();
 	Curso buscarCursoPorId(int idCurso);
-	List<Curso> buscarPorRangoPrecio(int minimo, int maximo);
+	List<Curso> buscarCursosRangoPrecios(double minimo, double maximo);
 	List<Curso> alta(Curso curso);
 	Curso eliminarCurso(String denominacion);
-	Curso actualizarPrecio(String denominacion);
+	void actualizarPrecio(int porcentaje, String denominacion);
 }
