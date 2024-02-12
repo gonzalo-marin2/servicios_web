@@ -45,6 +45,8 @@ public class FormacionServiceImpl implements FormacionService {
 			.toBodilessEntity();//ResponseEntity<Void>
 		}catch(HttpClientErrorException ex) {
 			//tratamiento del error, que dependerá de lo que queramos hacer
+			System.out.println("********Volcado del error");
+			ex.printStackTrace();
 		}
 	}
 
