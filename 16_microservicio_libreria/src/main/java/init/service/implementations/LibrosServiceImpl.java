@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import init.dao.LibrosDao;
-import init.exceptions.LibroExistenteException;
 import init.model.Libro;
 import init.service.interfaces.LibrosService;
 
@@ -20,25 +19,31 @@ public class LibrosServiceImpl implements LibrosService {
 	public List<Libro> libros() {
 		return librosDao.findAll();
 	}
-
+	
 	@Override
-	public List<Libro> librosPorTematica(String tematica) {
-		return librosDao.findByTematica(tematica);
+	public List<String> tematicas() {
+		/*return librosDao.findAll().stream()
+				.map(l->l.getTematica())
+				.distinct()
+				.toList();*/
+		return librosDao.findTematicas();
 	}
 
 	@Override
 	public Libro libroPorIsbn(int isbn) {
 		return librosDao.findByIsbn(isbn);
 	}
-
+	
+	
 	@Override
-	public List<Libro> alta(Libro libro) throws LibroExistenteException() {
-		if(librosDao.findByIsbn(libro.getIsbn())!=null) {
-			throw new LibroExistenteException();
+	public List<Libro> alta(Libro libro) {
+		if(librosDao.findByIsbn(libro.getIsbn())==null) {
+			librosDao.save(libro);
+			return libros();
 		}
-		librosDao.save(libro);
-		return libros();
+		return null;
 	}
 
-
 }
+
+	
