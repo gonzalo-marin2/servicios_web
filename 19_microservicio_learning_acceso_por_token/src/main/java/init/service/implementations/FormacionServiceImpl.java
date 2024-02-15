@@ -68,7 +68,7 @@ public class FormacionServiceImpl implements FormacionService {
 		}catch(Exception ex){
 			//Si hay una excepción pq el token ha caducado
 			//lo regeneramos e intentamos el alta de nuevo
-			getToken();
+			token=getToken();
 			alta(formacion);
 		}
 		
