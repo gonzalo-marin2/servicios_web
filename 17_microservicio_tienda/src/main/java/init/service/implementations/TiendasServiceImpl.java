@@ -27,7 +27,7 @@ public class TiendasServiceImpl implements TiendasService {
 	
 	private List<Libro> libros(){
 		return Arrays.asList(restClient.get()
-				.uri(urlBase+"tematicas")
+				.uri(urlBase+"libros")
 				.retrieve()
 				.body(Libro[].class));//obtenemos un array)
 	}
@@ -35,7 +35,7 @@ public class TiendasServiceImpl implements TiendasService {
 	@Override
 	public List<String> tematicas() {
 		return Arrays.asList(restClient.get()
-				.uri(urlBase+"libros")
+				.uri(urlBase+"tematicas")
 				.retrieve()
 				.body(String[].class));//obtenemos un array)
 		/*return libros().stream()
@@ -51,9 +51,9 @@ public class TiendasServiceImpl implements TiendasService {
 				.header("Authorization", "Basic "+getBase64(usuario,pass))
 				.retrieve()
 				.body(Libro[].class))
-				.stream()
-				.filter(l->l.getTematica().equals(tematica))
-				.toList();
+		.stream()
+		.filter(l->l.getTematica().equals(tematica))
+		.toList();
 	}
 	
 	private String getBase64(String us, String pwd) {

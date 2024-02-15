@@ -14,6 +14,7 @@ import org.springframework.web.client.RestClient;
 import init.model.Formacion;
 import init.model.TokenResponse;
 import init.service.interfaces.FormacionService;
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class FormacionServiceImpl implements FormacionService {
@@ -31,8 +32,13 @@ public class FormacionServiceImpl implements FormacionService {
 	String clientId;
 	@Value("${app.grant_type}")
 	String grantType;
-	
 	String urlBase="http://localhost:8500/";
+	
+	String token;
+	@PostConstruct
+	public void init() {//este método será llamado cuando la instancia esté disponible 
+		token=getToken();
+	}
 
 	@Override
 	public List<Formacion> catalogo() {
@@ -51,14 +57,21 @@ public class FormacionServiceImpl implements FormacionService {
 
 	@Override
 	public void alta(Formacion formacion) {
-		restClient.post()
+		try {
+			restClient.post()
 			.uri(urlBase+"alta")
 			.contentType(MediaType.APPLICATION_JSON)
 			.body(formacion)
-			//enviamos las credenciales a través del encabezado
-			.header("Authorization", "Bearer "+getToken())//getToken() se comunica con keycloak y obtiene el token 
+			.header("Authorization", "Bearer "+token)//enviamos las credenciales a través del encabezado
 			.retrieve()
 			.toBodilessEntity();//ResponseEntity<Void>
+		}catch(Exception ex){
+			//Si hay una excepción pq el token ha caducado
+			//lo regeneramos e intentamos el alta de nuevo
+			getToken();
+			alta(formacion);
+		}
+		
 	}
 	
 	private String getToken() {

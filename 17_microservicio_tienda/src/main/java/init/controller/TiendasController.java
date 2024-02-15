@@ -27,7 +27,7 @@ public class TiendasController {
 	}
 	
 	@GetMapping(value = "libros/{tematica}",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Libro> librosPorTematica(@PathVariable("tematica") String tematica){
-		return tiendasService.librosPorTematica(tematica);
+	public ResponseEntity<List<Libro>> librosPorTematica(@PathVariable("tematica") String tematica){
+		return new ResponseEntity<>(tiendasService.librosPorTematica(tematica),HttpStatus.OK);
 	}
 }
