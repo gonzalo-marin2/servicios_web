@@ -21,7 +21,7 @@ public class LibrosController {
 	@Autowired
 	LibrosService librosService;
 	
-	//acceso libre
+	//autenticado
 	@GetMapping(value="libros",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Libro>> catalogo(){
 		return new ResponseEntity<>(librosService.libros(),HttpStatus.OK);
@@ -33,7 +33,7 @@ public class LibrosController {
 		return new ResponseEntity<>(librosService.tematicas(),HttpStatus.OK);
 	}
 	
-	//usuarios autenticados
+	//acceso libre
 	@GetMapping(value="isbn",produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Libro> buscarPorIsbn(@RequestParam("isbn") int isbn) {
 		Libro lb=librosService.libroPorIsbn(isbn);

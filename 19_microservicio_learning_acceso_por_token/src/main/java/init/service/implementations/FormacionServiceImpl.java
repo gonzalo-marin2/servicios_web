@@ -43,7 +43,7 @@ public class FormacionServiceImpl implements FormacionService {
 	@Override
 	public List<Formacion> catalogo() {
 		return Arrays.asList(restClient.get()
-				.uri(urlBase+"cursos")
+				.uri(urlBase+"libros")
 				.retrieve()
 				.body(Formacion[].class));//obtenemos un array)
 	}
