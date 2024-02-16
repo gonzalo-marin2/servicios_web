@@ -1,0 +1,16 @@
+app:
+  client_id: validador
+  grant_type: password
+  password: admin
+  urlAuth: http://localhost:8080/realms/LibreriaRealm/protocol/openid-connect/token
+  username: admin
+server:
+  port: 10000
+spring:
+  application:
+    name: servicio-tienda
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      default-zone: http://localhost:8761/eureka
