@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Last-Modified" content="0">
+<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	
+	<div id="contenedor" class="container">
+		<h1>Continentes</h1>
+		<div id="continentes">
+		</div>
+		<div id="paises">
+		
+		</div>
+		
+	</div>
+	
+	<script type="text/javascript">
+			
+		$(document).ready(function(){
+			cargarContinentes();
+		});
+		
+		var url="http://localhost:7000/spaises/"
+		
+		function cargarContinentes(){
+			$.get(url+"continentes",function(data){
+				var res="<select id='lista' onchange='cargarPaises()'>";
+				$.each(data,function(i,e){
+					res+="<option value='"+e+"'>"+e+"</option>";
+				});
+				res+="</select><br>";
+				$("#continentes").html(res);
+			});
+		}
+		
+		function cargarPaises() {	
+		var res = "<br><h2>Paises</h2>";
+		res+="<br><table border='1'>";		
+		res+="<tr><th>Nombre</th><th>Capital</th><th>Población</th><th>Bandera</th></tr>";
+			$.get(url+"paises/"+$("#lista").val(),function(data){	
+				
+				$.each(data,function(i,p){
+					res+="<tr><td>"+p.nombre+"</td><td>"+p.capital+"</td><td>"+p.poblacion+"</td><td align='center'><img src='"+p.bandera+"' alt='Bandera' width='32' height='16'></td></tr>";
+				});		
+				
+				res+="</table>";
+				$("#paises").html(res);
+			});
+		
+	}
+	
+	</script>
+
+</body>
+</html>
