@@ -2,7 +2,7 @@ app:
   client_id: validador
   grant_type: password
   password: admin
-  urlAuth: http://localhost:8080/realms/UsuariosCursoRealm/protocol/openid-connect/token
+  urlAuth: http://localhost:8080/realms/LibreriaRealm/protocol/openid-connect/token
   username: admin
 server:
   port: 10000
