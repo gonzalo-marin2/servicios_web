@@ -33,9 +33,9 @@ public class SecurityConfig {
 		http.csrf(c->c.disable())
 		//2.- establecer criterios de acceso
 		.authorizeHttpRequests(
-				aut->aut.requestMatchers(HttpMethod.GET, "/isbn").authenticated()
-				.requestMatchers(HttpMethod.POST, "/alta").hasRole("ADMINS")
-				.anyRequest().permitAll()//acceso libre al resto de llamadas
+				aut->//aut.requestMatchers(HttpMethod.GET, "/isbn").authenticated()
+				//.requestMatchers(HttpMethod.POST, "/alta").hasRole("ADMINS")
+				aut.anyRequest().permitAll()//acceso libre al resto de llamadas
 				)
 		//3.- establecer como se va a autenticar el usuario
 		.httpBasic(Customizer.withDefaults());
