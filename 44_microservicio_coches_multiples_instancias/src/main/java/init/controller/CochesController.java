@@ -22,7 +22,7 @@ import init.service.interfaces.CochesService;
 public class CochesController {
 	
 	//para imprimir el nombre de la instancia que soy
-	@Value("#{eureka.instance.instance-id}")
+	@Value("${eureka.instance.instance-id}")
 	private String instanciaId;
 	
 	@Autowired
